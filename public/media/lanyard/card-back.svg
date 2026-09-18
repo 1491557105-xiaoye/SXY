@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1400" viewBox="0 0 1000 1400">
+  <defs>
+    <radialGradient id="back-bg" cx="70%" cy="20%" r="90%">
+      <stop offset="0" stop-color="#7b2115"/>
+      <stop offset="0.48" stop-color="#21100d"/>
+      <stop offset="1" stop-color="#080707"/>
+    </radialGradient>
+    <pattern id="grid" width="72" height="72" patternUnits="userSpaceOnUse">
+      <path d="M72 0H0V72" fill="none" stroke="#fb5923" stroke-opacity=".13" stroke-width="2"/>
+    </pattern>
+  </defs>
+  <rect width="1000" height="1400" rx="72" fill="url(#back-bg)"/>
+  <rect width="1000" height="1400" rx="72" fill="url(#grid)"/>
+  <rect x="48" y="48" width="904" height="1304" rx="52" fill="none" stroke="#fb5923" stroke-width="5"/>
+  <text x="76" y="160" fill="#ff9a76" font-family="Arial, sans-serif" font-size="25" font-weight="700" letter-spacing="7">SELECTED WORKS · 01—05</text>
+  <text x="66" y="520" fill="#fff4ee" font-family="Arial, sans-serif" font-size="184" font-weight="900" letter-spacing="-16">XIAO</text>
+  <text x="66" y="680" fill="#fff4ee" font-family="Arial, sans-serif" font-size="184" font-weight="900" letter-spacing="-16">YE</text>
+  <path d="M78 760H922" stroke="#fb5923" stroke-width="4"/>
+  <text x="78" y="855" fill="#fb5923" font-family="Arial, sans-serif" font-size="34" font-weight="800" letter-spacing="5">MAKE IDEAS TANGIBLE.</text>
+  <text x="78" y="1030" fill="#d9b8ad" font-family="Arial, sans-serif" font-size="27" letter-spacing="3">PRODUCT THINKING</text>
+  <text x="78" y="1080" fill="#d9b8ad" font-family="Arial, sans-serif" font-size="27" letter-spacing="3">CONTENT OPERATIONS</text>
+  <text x="78" y="1130" fill="#d9b8ad" font-family="Arial, sans-serif" font-size="27" letter-spacing="3">VISUAL DESIGN</text>
+  <circle cx="838" cy="1234" r="78" fill="#fb5923"/>
+  <path d="M803 1199L873 1269M873 1199L803 1269" stroke="#170907" stroke-width="18" stroke-linecap="round"/>
+</svg>

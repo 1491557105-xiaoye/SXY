@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1400" viewBox="0 0 1000 1400">
+  <defs>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fffdf9"/><stop offset="1" stop-color="#efe8dc"/></linearGradient>
+    <linearGradient id="head" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff6b47"/><stop offset="1" stop-color="#f54a78"/></linearGradient>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="2" fill="#e45d48" opacity=".15"/></pattern>
+    <clipPath id="photo"><rect x="85" y="264" width="830" height="760" rx="35"/></clipPath>
+  </defs>
+  <rect width="1000" height="1400" rx="76" fill="url(#card)"/>
+  <rect width="1000" height="1400" rx="76" fill="url(#dots)"/>
+  <rect x="45" y="45" width="910" height="1310" rx="54" fill="none" stroke="#d95a43" stroke-opacity=".38" stroke-width="5"/>
+  <path d="M0 76Q0 0 76 0H924Q1000 0 1000 76V206H0Z" fill="url(#head)"/>
+  <text x="500" y="102" text-anchor="middle" fill="#fffdf8" font-family="Arial, sans-serif" font-size="33" font-weight="800" letter-spacing="8">PORTFOLIO ID</text>
+  <text x="500" y="156" text-anchor="middle" fill="#fffdf8" font-family="Arial, sans-serif" font-size="60" font-weight="900" letter-spacing="3">SHAO XINYE</text>
+  <rect x="85" y="264" width="830" height="760" rx="35" fill="#d9d6d1"/>
+  <image href="/media/profile.png" x="85" y="264" width="830" height="760" preserveAspectRatio="xMidYMid slice" clip-path="url(#photo)"/>
+  <rect x="85" y="264" width="830" height="760" rx="35" fill="none" stroke="#d85c46" stroke-width="5"/>
+  <text x="88" y="1112" fill="#2e211e" font-family="Arial, sans-serif" font-size="77" font-weight="900" letter-spacing="-3">SHAO XINYE</text>
+  <text x="90" y="1170" fill="#cc553f" font-family="Arial, sans-serif" font-size="25" font-weight="800" letter-spacing="3">AI PRODUCT · CONTENT · VISUAL</text>
+  <path d="M90 1210H910" stroke="#d8634c" stroke-width="4"/>
+  <text x="90" y="1262" fill="#63534c" font-family="Arial, sans-serif" font-size="24" font-weight="700">北京理工大学 · 设计学硕士在读 · 2027</text>
+  <text x="90" y="1312" fill="#63534c" font-family="Arial, sans-serif" font-size="22" font-weight="700">内容运营 / 用户体验 / 智能汽车</text>
+</svg>

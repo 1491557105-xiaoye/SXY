@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1400" viewBox="0 0 1000 1400">
+  <defs><linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f8f3eb"/><stop offset="1" stop-color="#e8ded0"/></linearGradient></defs>
+  <rect width="1000" height="1400" rx="76" fill="url(#b)"/>
+  <rect x="46" y="46" width="908" height="1308" rx="52" fill="none" stroke="#d75a45" stroke-opacity=".38" stroke-width="5"/>
+  <path d="M0 76Q0 0 76 0H924Q1000 0 1000 76V206H0Z" fill="#f45b58"/>
+  <text x="500" y="126" text-anchor="middle" fill="#fffdf8" font-family="Arial, sans-serif" font-size="38" font-weight="900" letter-spacing="7">SHAO XINYE</text>
+  <text x="90" y="350" fill="#402c25" font-family="Arial, sans-serif" font-size="38" font-weight="800">AI PRODUCT · CONTENT OPERATIONS</text>
+  <path d="M90 410H910M90 500H910M90 590H910M90 680H910M90 770H910M90 860H910" stroke="#d9c6ba" stroke-width="10" stroke-linecap="round"/>
+  <text x="90" y="1195" fill="#d75a45" font-family="Arial, sans-serif" font-size="30" font-weight="800" letter-spacing="5">PORTFOLIO · 2026</text>
+  <text x="90" y="1260" fill="#67544b" font-family="Arial, sans-serif" font-size="25" font-weight="700" letter-spacing="3">BASED IN SHANGHAI</text>
+</svg>
