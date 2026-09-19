@@ -6,24 +6,32 @@ import BorderGlow from './BorderGlow';
 type Row = 'primary' | 'secondary';
 type MarqueeItem = { title: string; titleEn: string; image?: string; href: string; label: string };
 
-function MarqueeRow({ items, row, trackRef, onPointerMove, onPointerLeave }: {
-  items: MarqueeItem[]; row: Row; trackRef: React.RefObject<HTMLDivElement | null>;
+function MarqueeRow({ items, row, trackRef, sliderRef, onPointerMove, onPointerLeave, onSliderChange }: {
+  items: MarqueeItem[]; row: Row; trackRef: React.RefObject<HTMLDivElement | null>; sliderRef: React.RefObject<HTMLInputElement | null>;
   onPointerMove: (row: Row, event: React.PointerEvent<HTMLDivElement>) => void;
   onPointerLeave: (row: Row) => void;
+  onSliderChange: (row: Row, event: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
   return (
-    <div className={`project-marquee-row-shell project-marquee-row-${row}`} onPointerMove={(event) => onPointerMove(row, event)} onPointerLeave={() => onPointerLeave(row)}>
-      <div ref={trackRef} className="project-marquee-row" data-marquee-row={row}>
-        {items.map((item, index) => (
-          <BorderGlow key={item.href} className={`project-marquee-glow project-marquee-card-${index + 1}`} borderRadius={16}>
-            <a className="project-marquee-card" href={item.href}>
-              {item.image ? <img src={item.image} alt="" loading="lazy" /> : <div className="project-marquee-placeholder"><span>ASSET<br />TO COME</span></div>}
-              <div className="project-marquee-caption"><span>{item.label}</span><strong>{item.title}</strong><small>{item.titleEn}</small></div>
-            </a>
-          </BorderGlow>
-        ))}
+    <>
+      <div className={`project-marquee-row-shell project-marquee-row-${row}`} onPointerMove={(event) => onPointerMove(row, event)} onPointerLeave={() => onPointerLeave(row)}>
+        <div ref={trackRef} className="project-marquee-row" data-marquee-row={row}>
+          {items.map((item, index) => (
+            <BorderGlow key={item.href} className={`project-marquee-glow project-marquee-card-${index + 1}`} borderRadius={16}>
+              <a className="project-marquee-card" href={item.href}>
+                {item.image ? <img src={item.image} alt="" loading="lazy" /> : <div className="project-marquee-placeholder"><span>ASSET<br />TO COME</span></div>}
+                <div className="project-marquee-caption"><span>{item.label}</span><strong>{item.title}</strong><small>{item.titleEn}</small></div>
+              </a>
+            </BorderGlow>
+          ))}
+        </div>
       </div>
-    </div>
+      <div className="project-marquee-slider">
+        <span aria-hidden="true">←</span>
+        <input ref={sliderRef} type="range" min="0" max="1000" defaultValue="0" aria-label={row === 'primary' ? '滑动浏览核心项目' : '滑动浏览其他作品'} onChange={(event) => onSliderChange(row, event)} />
+        <span aria-hidden="true">→</span>
+      </div>
+    </>
   );
 }
 
@@ -31,6 +39,9 @@ export default function ProjectMarquee({ primary, secondary }: { primary: Marque
   const sectionRef = useRef<HTMLElement>(null);
   const primaryTrackRef = useRef<HTMLDivElement>(null);
   const secondaryTrackRef = useRef<HTMLDivElement>(null);
+  const primarySliderRef = useRef<HTMLInputElement>(null);
+  const secondarySliderRef = useRef<HTMLInputElement>(null);
+  const applyTransformsRef = useRef<() => void>(() => {});
   const scrollOffset = useRef<Record<Row, number>>({ primary: -200, secondary: 200 });
   const hoverOffset = useRef<Record<Row, number>>({ primary: 0, secondary: 0 });
   const hoverDirection = useRef<Record<Row, number>>({ primary: 0, secondary: 0 });
@@ -42,16 +53,17 @@ export default function ProjectMarquee({ primary, secondary }: { primary: Marque
     if (!section || !primaryTrack || !secondaryTrack) return;
 
     const applyTransforms = () => {
-      const clampToTrack = (track: HTMLDivElement, position: number) => {
+      const setTrackPosition = (row: Row, track: HTMLDivElement, slider: HTMLInputElement | null) => {
         const viewportWidth = track.parentElement?.clientWidth ?? section.clientWidth;
-        const minPosition = Math.min(0, viewportWidth - track.scrollWidth);
-        return Math.max(minPosition, Math.min(0, position));
+        const travel = Math.max(0, track.scrollWidth - viewportWidth);
+        const position = Math.max(-travel, Math.min(0, scrollOffset.current[row] + hoverOffset.current[row]));
+        track.style.transform = `translate3d(${position}px,0,0)`;
+        if (slider) slider.value = String(travel ? Math.round((-position / travel) * 1000) : 0);
       };
-      const primaryPosition = clampToTrack(primaryTrack, scrollOffset.current.primary + hoverOffset.current.primary);
-      const secondaryPosition = clampToTrack(secondaryTrack, scrollOffset.current.secondary + hoverOffset.current.secondary);
-      primaryTrack.style.transform = `translate3d(${primaryPosition}px,0,0)`;
-      secondaryTrack.style.transform = `translate3d(${secondaryPosition}px,0,0)`;
+      setTrackPosition('primary', primaryTrack, primarySliderRef.current);
+      setTrackPosition('secondary', secondaryTrack, secondarySliderRef.current);
     };
+    applyTransformsRef.current = applyTransforms;
     const updateScrollOffset = () => {
       const sectionTop = section.getBoundingClientRect().top + window.scrollY;
       const scrolled = window.scrollY - sectionTop + window.innerHeight;
@@ -91,6 +103,7 @@ export default function ProjectMarquee({ primary, secondary }: { primary: Marque
       window.removeEventListener('resize', onScroll);
       if (scrollFrame) window.cancelAnimationFrame(scrollFrame);
       window.cancelAnimationFrame(hoverFrame);
+      applyTransformsRef.current = () => {};
     };
   }, []);
 
@@ -103,12 +116,21 @@ export default function ProjectMarquee({ primary, secondary }: { primary: Marque
     hoverDirection.current[row] = x <= edgeWidth ? 1 : x >= rect.width - edgeWidth ? -1 : 0;
   };
   const handlePointerLeave = (row: Row) => { hoverDirection.current[row] = 0; };
+  const handleSliderChange = (row: Row, event: React.ChangeEvent<HTMLInputElement>) => {
+    const track = row === 'primary' ? primaryTrackRef.current : secondaryTrackRef.current;
+    if (!track) return;
+    const travel = Math.max(0, track.scrollWidth - (track.parentElement?.clientWidth ?? 0));
+    scrollOffset.current[row] = -travel * (Number(event.currentTarget.value) / 1000);
+    hoverOffset.current[row] = 0;
+    hoverDirection.current[row] = 0;
+    applyTransformsRef.current();
+  };
 
   return (
     <section className="project-marquee" ref={sectionRef} aria-label="项目目录">
       <div className="project-marquee-head"><span>PROJECT INDEX / 01—05</span><span>SCROLL / HOVER TO EXPLORE</span></div>
-      <MarqueeRow items={primary} row="primary" trackRef={primaryTrackRef} onPointerMove={handlePointerMove} onPointerLeave={handlePointerLeave} />
-      <MarqueeRow items={secondary} row="secondary" trackRef={secondaryTrackRef} onPointerMove={handlePointerMove} onPointerLeave={handlePointerLeave} />
+      <MarqueeRow items={primary} row="primary" trackRef={primaryTrackRef} sliderRef={primarySliderRef} onPointerMove={handlePointerMove} onPointerLeave={handlePointerLeave} onSliderChange={handleSliderChange} />
+      <MarqueeRow items={secondary} row="secondary" trackRef={secondaryTrackRef} sliderRef={secondarySliderRef} onPointerMove={handlePointerMove} onPointerLeave={handlePointerLeave} onSliderChange={handleSliderChange} />
       <div className="project-marquee-footer"><span>01—04 / CORE PROJECTS</span><span>05 / OTHER WORKS · SELECTED SUBPROJECTS</span></div>
     </section>
   );

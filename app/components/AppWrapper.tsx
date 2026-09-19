@@ -1,15 +1,29 @@
 'use client';
 
 import { AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import LoadingScreen from './LoadingScreen';
+import BackgroundMusic from './BackgroundMusic';
 
 export default function AppWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  if (pathname !== '/') return <div className="app-content">{children}</div>;
+  const firstMountRef = useRef(true);
 
-  return <HomeWrapper>{children}</HomeWrapper>;
+  useEffect(() => {
+    if (!firstMountRef.current) return;
+    firstMountRef.current = false;
+    if (pathname !== '/') {
+      window.location.replace('/#home');
+      return;
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [pathname]);
+
+  return <>
+    {pathname !== '/' ? <div className="app-content">{children}</div> : <HomeWrapper>{children}</HomeWrapper>}
+    <BackgroundMusic />
+  </>;
 }
 
 function HomeWrapper({ children }: { children: React.ReactNode }) {

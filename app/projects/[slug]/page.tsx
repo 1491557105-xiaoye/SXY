@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import type { CSSProperties } from 'react';
 import Grainient from '../../components/Grainient';
+import Aurora from '../../components/Aurora';
 import Link from 'next/link';
 import UaWeeklyRails from '../../components/UaWeeklyRails';
 import LongformPreviewRail from '../../components/LongformPreviewRail';
@@ -17,7 +18,7 @@ type ProjectSection = {
   media?: ProjectMedia[];
   steps?: string[];
   facts?: { label: string; value: string; color?: string }[];
-  layout?: 'wide' | 'research' | 'system' | 'people' | 'pairs' | 'mosaic' | 'li-feature' | 'longform' | 'longform-preview' | 'exhibit' | 'archive' | 'rail-design' | 'field-proof' | 'channel-grid' | 'ua-grid' | 'ua-rail' | 'netease-video' | 'netease-boards' | 'modeling' | 'skynet-intro' | 'skynet-spec' | 'skynet-process' | 'skynet-value' | 'skynet-app' | 'skynet-operations' | 'skynet-summary' | 'skynet-values' | 'skynet-problem' | 'skynet-logo' | 'skynet-experience' | 'skynet-boundary';
+  layout?: 'wide' | 'research' | 'system' | 'people' | 'pairs' | 'mosaic' | 'li-feature' | 'longform' | 'longform-preview' | 'exhibit' | 'archive' | 'rail-design' | 'field-proof' | 'channel-grid' | 'ua-grid' | 'ua-rail' | 'netease-video' | 'netease-boards' | 'modeling' | 'xiaoxue' | 'crrc' | 'skynet-intro' | 'skynet-spec' | 'skynet-process' | 'skynet-value' | 'skynet-app' | 'skynet-operations' | 'skynet-summary' | 'skynet-values' | 'skynet-problem' | 'skynet-logo' | 'skynet-experience' | 'skynet-boundary';
   strip?: { start: number; end: number };
 };
 
@@ -335,10 +336,10 @@ const projects: Record<string, Project> = {
         media:[
           {src:'/media/projects/other-works/xiaoxue-cover.webp',alt:'小雪多屏联动动画封面',caption:'小雪 · 多屏联动动画展示',variant:'feature'},
           {src:'/media/projects/other-works/xiaoxue-on-site-video.mp4',type:'video',mime:'video/mp4',poster:'/media/projects/other-works/xiaoxue-on-site.webp',alt:'小雪多屏联动动画现场拍摄',caption:'现场视频 · 多屏动画落地'},
-          {src:'/media/projects/other-works/xiaoxue-portrait-screen.mp4',type:'video',mime:'video/mp4',poster:'/media/projects/other-works/xiaoxue-on-site.webp',alt:'小雪立屏动效',caption:'屏幕动效 · 立屏'},
-          {src:'/media/projects/other-works/xiaoxue-floor-screen.mp4',type:'video',mime:'video/mp4',poster:'/media/projects/other-works/xiaoxue-on-site.webp',alt:'小雪地屏动效',caption:'屏幕动效 · 地屏'},
-          {src:'/media/projects/other-works/xiaoxue-ring-screen.mp4',type:'video',mime:'video/mp4',poster:'/media/projects/other-works/xiaoxue-on-site.webp',alt:'小雪环屏动效',caption:'屏幕动效 · 环屏'},
-          {src:'/media/projects/other-works/xiaoxue-scroll-screen.mp4',type:'video',mime:'video/mp4',poster:'/media/projects/other-works/xiaoxue-on-site.webp',alt:'小雪卷轴屏动效',caption:'屏幕动效 · 卷轴屏'},
+          {src:'/media/projects/other-works/xiaoxue-portrait-screen.mp4',type:'video',mime:'video/mp4',poster:'/media/projects/other-works/xiaoxue-portrait-poster.png',alt:'小雪立屏动效',caption:'屏幕动效 · 立屏'},
+          {src:'/media/projects/other-works/xiaoxue-floor-screen.mp4',type:'video',mime:'video/mp4',poster:'/media/projects/other-works/xiaoxue-floor-poster.png',alt:'小雪地屏动效',caption:'屏幕动效 · 地屏'},
+          {src:'/media/projects/other-works/xiaoxue-ring-screen.mp4',type:'video',mime:'video/mp4',poster:'/media/projects/other-works/xiaoxue-ring-poster.png',alt:'小雪环屏动效',caption:'屏幕动效 · 环屏'},
+          {src:'/media/projects/other-works/xiaoxue-scroll-screen.mp4',type:'video',mime:'video/mp4',poster:'/media/projects/other-works/xiaoxue-scroll-poster.png',alt:'小雪卷轴屏动效',caption:'屏幕动效 · 卷轴屏'},
           {src:'/media/projects/other-works/xiaoxue-on-site.webp',alt:'小雪多屏动画现场效果',caption:'现场落地 · 小雪主题'},
           {src:'/media/projects/other-works/xiaoxue-multiscreen-installation.webp',alt:'二十四节气多屏动画落地效果',caption:'现场落地 · 多屏联动'},
           {src:'/media/projects/other-works/xiaoxue-animation-debug.webp',alt:'小雪动画联屏修改与调试',caption:'设计调试 · 联屏预览'},
@@ -359,12 +360,12 @@ const projects: Record<string, Project> = {
       },
       {
         id:'crrc', label:'05 / INDUSTRIAL LIVERY', title:'让二维图形跨越真实工业结构。',
-        body:['系列项目覆盖中国中车 QBAA1 型纯电动力机车、泰国 SRT QSGJC-120 轨检车和几内亚 CTG 设备。我负责涂装主视觉与平面效果图、三维效果预览，并根据车体结构、开孔、门窗与生产反馈持续调整图形落位。','三款方案均进入实际生产。以下不使用旧 PPT 版面，而是把设计说明、色彩、二维图形、三维视图与落地证据重新组织为适合网页浏览的连续档案。'],
+        body:['系列项目覆盖 QBAA1 型纯电动力机车、SRT QSGJC-120 轨检车和 CTG 设备。我负责涂装主视觉与平面效果图、三维效果预览，并根据车体结构、开孔、门窗与生产反馈持续调整图形落位。','三款方案均进入实际生产。以下把设计说明、色彩、二维图形、三维视图与落地证据组织为适合网页浏览的连续档案。'],
         facts:[{label:'PERIOD',value:'2024.01—2025.12'},{label:'CARRIER',value:'3 类轨道交通载体'},{label:'STATUS',value:'均已生产应用'}],
         media:[
           {src:'/media/projects/other-works/crrc-cover-main.webp',alt:'轨道交通装备涂装设计封面',caption:'Rail transit · 涂装设计合集',variant:'feature'},
-          {src:'/media/projects/other-works/crrc-three-vehicles.webp',alt:'中国中车三款轨道交通设备涂装设计总览',caption:'QBAA1 · QSGJC-120 · CTG',variant:'feature'},
-          {src:'/media/projects/other-works/crrc-qbaa1-board.webp',alt:'QBAA1纯电动力机车涂装设计方案',caption:'QBAA1 · 纯电动力机车'},
+          {src:'/media/projects/other-works/crrc-three-vehicles.webp',alt:'三款轨道交通设备涂装设计总览',caption:'QBAA1 · QSGJC-120 · CTG',variant:'feature'},
+          {src:'/media/projects/other-works/crrc-qbaa1-board-new.png',alt:'QBAA1纯电动力机车涂装设计方案',caption:'QBAA1 · 纯电动力机车'},
           {src:'/media/projects/other-works/crrc-srt-board.webp',alt:'QSGJC-120轨检车涂装设计方案',caption:'QSGJC-120 · 轨检车'},
           {src:'/media/projects/other-works/crrc-ctg-board.webp',alt:'CTG设备涂装设计方案',caption:'CTG · 设备涂装'}
         ], layout:'crrc', strip:{start:2,end:5}
@@ -372,7 +373,7 @@ const projects: Record<string, Project> = {
       {
         id:'qbaa1', label:'04.1 / QBAA1 · SHAGANG', title:'把绿色转型与钢铁力量转化为车体图形。',
         body:['方案围绕沙钢集团“减量化、再利用、资源化”的循环经济理念，将品牌标识中的 S 元素与钢铁结构语言融合；蓝绿主色传达绿色化、智能化与高效化的工业方向。','我从二维纹样与关键识别面出发，对照车体尺寸与结构边界完成图形落位，再通过多视角三维渲染检查比例、转折和视觉重心。页面中的透明车辆 PNG 使用青绿工业渐变、柔和光晕与细线网格作为衬底。'],
-        facts:[{label:'TIME',value:'2024.01'},{label:'PARTNER',value:'中国中车 × 沙钢集团'},{label:'PATENT',value:'外观设计专利 · 第二设计人'}],
+        facts:[{label:'TIME',value:'2024.01'},{label:'PARTNER',value:'沙钢集团'},{label:'PATENT',value:'外观设计专利 · 第二设计人'}],
         media:[
           {src:'/media/projects/other-works/qbaa1-hero.webp',alt:'QBAA1型纯电动力机车涂装设计主视觉',caption:'QBAA1 · 纯电动力机车',variant:'feature'},
           {src:'/media/projects/other-works/qbaa1-pattern.webp',alt:'QBAA1机车涂装纹样设计',caption:'S 元素与钢铁结构语言',variant:'transparent'},
@@ -394,11 +395,11 @@ const projects: Record<string, Project> = {
         ], layout:'field-proof'
       },
       {
-        id:'qsgjc', label:'04.2 / QSGJC-120 · THAILAND SRT', title:'用“翅膀”与盾牌构建速度、覆盖与守护感。',
-        body:['设计提取泰国国家铁路局 SRT 标识中的“翅膀”元素：向前展开的斜线表达速度、自由与铁路网络的连接能力，盾牌式前脸强调轨检任务中的保护与安全。黄色建立远距离识别，橙红色强化方向与警示，几何折线连接不同车体表面。','页面按照平面三视图、结构对应视角、三维效果和实车落地顺序展开；透明 PNG 使用暖黄—橙红的发光展台底色，使车辆轮廓与网站深色环境形成清晰层次。'],
-        facts:[{label:'TIME',value:'2024.07'},{label:'PARTNER',value:'中国中车 × 泰国 SRT'},{label:'CARRIER',value:'QSGJC-120 轨检车'}],
+        id:'qsgjc', label:'04.2 / QSGJC-120 · SRT', title:'用“翅膀”与盾牌构建速度、覆盖与守护感。',
+        body:['设计提取 SRT 标识中的“翅膀”元素：向前展开的斜线表达速度、自由与铁路网络的连接能力，盾牌式前脸强调轨检任务中的保护与安全。黄色建立远距离识别，橙红色强化方向与警示，几何折线连接不同车体表面。','页面按照平面三视图、结构对应视角、三维效果和实车落地顺序展开；透明 PNG 使用暖黄—橙红的发光展台底色，使车辆轮廓与网站深色环境形成清晰层次。'],
+        facts:[{label:'TIME',value:'2024.07'},{label:'PROJECT',value:'SRT 轨检车涂装'},{label:'CARRIER',value:'QSGJC-120 轨检车'}],
         media:[
-          {src:'/media/projects/other-works/qsgjc-hero.webp',alt:'泰国SRT QSGJC-120轨检车涂装设计主视觉',caption:'QSGJC-120 · 轨检车',variant:'feature'},
+          {src:'/media/projects/other-works/qsgjc-hero.webp',alt:'SRT QSGJC-120轨检车涂装设计主视觉',caption:'QSGJC-120 · 轨检车',variant:'feature'},
           {src:'/media/projects/other-works/qsgjc-flat-overview.webp',alt:'QSGJC-120轨检车平面三视图总览',caption:'平面三视图 · 图形与结构对应'},
           {src:'/media/projects/other-works/qsgjc-flat-side.webp',alt:'QSGJC-120轨检车平面侧视图',caption:'平面图 · 侧视'},
           {src:'/media/projects/other-works/qsgjc-flat-top.webp',alt:'QSGJC-120轨检车平面俯视图',caption:'平面图 · 俯视'},
@@ -418,11 +419,11 @@ const projects: Record<string, Project> = {
         ], layout:'archive'
       },
       {
-        id:'ctg', label:'04.3 / CTG · GUINEA', title:'把品牌标识转译成连续跨越车身的运输图形。',
+        id:'ctg', label:'04.3 / CTG · INDUSTRIAL LIVERY', title:'把品牌标识转译成连续跨越车身的运输图形。',
         body:['CTG 设备方案以品牌蓝与青绿色建立稳定、清晰的识别系统，将标识的几何转折延展为贯穿长车身的图形骨架。设计同时处理前脸、侧面和尾部的连续关系，使不同观看角度仍保持明确的品牌归属。','我负责平面涂装与三维预览，并根据设备结构继续调整落位；后续喷漆由工艺团队完成。透明车辆素材置于深海蓝—青绿色的层叠背景中，强调大型工业设备的尺度与可靠感。'],
-        facts:[{label:'TIME',value:'2025.12'},{label:'PARTNER',value:'中国中车 × 几内亚 CTG'},{label:'STATUS',value:'生产应用'}],
+        facts:[{label:'TIME',value:'2025.12'},{label:'PROJECT',value:'CTG 设备涂装'},{label:'STATUS',value:'生产应用'}],
         media:[
-          {src:'/media/projects/other-works/ctg-hero.webp',alt:'几内亚CTG设备涂装设计主视觉',caption:'CTG · 设备涂装方案',variant:'feature'},
+          {src:'/media/projects/other-works/ctg-hero.webp',alt:'CTG设备涂装设计主视觉',caption:'CTG · 设备涂装方案',variant:'feature'},
           {src:'/media/projects/other-works/ctg-design-source.webp',alt:'CTG设备涂装图形与颜色设计源稿',caption:'品牌色与图形基因'},
           {src:'/media/projects/other-works/ctg-flat-views.webp',alt:'CTG设备涂装平面四视图',caption:'平面四视图 · 连续落位'},
           {src:'/media/projects/other-works/ctg-render-overview.webp',alt:'CTG设备涂装三维效果总览',caption:'三维效果总览',variant:'transparent'},
@@ -549,19 +550,21 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     ? visibleSections.filter((section) => ['aircraft','forum','xiaoxue','modeling','crrc'].includes(section.id))
     : visibleSections;
   const otherWorksToc: Record<string, { capability: string; project: string }> = {
-    aircraft: { capability: '主视觉设计 + 项目落地能力', project: '赛事主视觉 · 智驭空天' },
-    forum: { capability: '主视觉设计 + 项目落地能力', project: 'AI+ · 设计未来学术论坛' },
-    xiaoxue: { capability: '数字动画设计能力', project: '小雪 · 环幕多屏动画' },
-    modeling: { capability: 'IP 设计 · 三维建模练习', project: '个人三维建模作品集' },
-    crrc: { capability: '平面图形设计能力', project: '轨道交通装备涂装' },
+    aircraft: { capability: '主视觉设计', project: '智驭空天' },
+    forum: { capability: '主视觉设计', project: 'AI+ 设计未来论坛' },
+    xiaoxue: { capability: '数字动效设计', project: '小雪多屏动画' },
+    modeling: { capability: '三维建模设计', project: 'IP 建模作品' },
+    crrc: { capability: '平面图形设计', project: '轨道涂装设计' },
   };
 
   return (
     <main className={`detail-page project-${slug}`} style={{ '--project-accent': project.accent } as CSSProperties}>
       {slug === 'netease-once-human' && <Grainient className="netease-grainient" color1="#102d62" color2="#4c1f54" color3="#03050b" timeSpeed={0.16} warpStrength={0.62} warpFrequency={3.4} warpSpeed={0.55} grainAmount={0.075} grainScale={1.6} contrast={1.4} saturation={0.9} zoom={1.05} />}
+      {slug === 'li-auto' && <Aurora className="li-auto-aurora" colorStops={['#2e8079', '#004b48', '#003232']} blend={0.46} amplitude={1} speed={0.9} />}
+      {slug === 'other-works' && <Aurora className="other-works-aurora" colorStops={['#430000', '#460d00', '#000000']} blend={0.62} amplitude={1} speed={0.9} />}
       <header className="detail-header">
-        <Link href="/" className="wordmark">SHAO XINYE <span>PORTFOLIO · 2026</span></Link>
-        <Link href="/#work">ALL PROJECTS ×</Link>
+        <Link href="/#home" scroll className="wordmark">SHAO XINYE <span>PORTFOLIO · 2026</span></Link>
+        <Link href="/#work" scroll>ALL PROJECTS ×</Link>
       </header>
 
       <section className="project-hero-detail">

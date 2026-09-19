@@ -328,6 +328,16 @@ footer h2 { font-size:clamp(52px,9vw,138px); letter-spacing:-.07em; line-height:
 .netease-grainient { inset:0; opacity:.68; overflow:hidden; pointer-events:none; position:absolute; z-index:0; }
 .project-netease-once-human > :not(.netease-grainient) { position:relative; z-index:1; }
 .grainient-container,.grainient-canvas { height:100%; width:100%; }
+
+/* A restrained viewport-height aurora keeps the Li Auto backdrop moving on scroll. */
+.project-li-auto { isolation:isolate; position:relative; }
+.project-li-auto .li-auto-aurora { inset:0; opacity:.78; position:fixed; z-index:0; }
+.project-li-auto > :not(.li-auto-aurora) { position:relative; z-index:1; }
+.project-li-auto > .detail-header { position:sticky; z-index:40; }
+.project-other-works { isolation:isolate; position:relative; }
+.project-other-works .other-works-aurora { inset:0; opacity:.58; position:fixed; z-index:0; }
+.project-other-works > :not(.other-works-aurora) { position:relative; z-index:1; }
+.project-other-works > .detail-header { position:sticky; z-index:40; }
 .grainient-canvas { display:block; }
 .project-netease-once-human .gallery-layout-netease-boards { display:grid; gap:clamp(18px,2.5vw,34px); grid-template-columns:1fr; margin-top:56px; }
 .project-netease-once-human .gallery-layout-netease-boards figure { background:linear-gradient(145deg,#071923,#02070c); border-color:rgba(46,222,238,.32); box-shadow:0 20px 50px rgba(0,0,0,.3); }
@@ -1725,9 +1735,14 @@ footer .eyebrow { color:#ffc15d; }
    the process and supporting boards read as deliberate, equal-height rows. */
 .project-other-works .gallery-layout-xiaoxue { grid-template-columns:1fr; }
 .project-other-works .gallery-layout-xiaoxue figure { grid-column:1/-1; }
-.project-other-works .xiaoxue-video-grid { display:grid; gap:12px; grid-template-columns:repeat(2,minmax(0,1fr)); margin-top:16px; }
-.project-other-works .xiaoxue-video-grid figure { margin:0; min-width:0; }
-.project-other-works .xiaoxue-video-grid video { aspect-ratio:16/9; display:block; height:auto; object-fit:cover; width:100%; }
+.project-other-works .xiaoxue-video-grid { display:grid; gap:12px; grid-template-columns:minmax(0,428fr) minmax(0,1098fr); margin-top:16px; }
+.project-other-works .xiaoxue-video-grid figure { align-self:start; margin:0; min-width:0; }
+.project-other-works .xiaoxue-video-grid figure:nth-child(n+3) { grid-column:1/-1; }
+.project-other-works .xiaoxue-video-grid video { aspect-ratio:auto; background:#080d18; display:block; height:auto; max-height:none; object-fit:contain; width:100%; }
+.project-other-works .xiaoxue-video-grid figure:nth-child(1) video { aspect-ratio:428 / 1080; }
+.project-other-works .xiaoxue-video-grid figure:nth-child(2) video { aspect-ratio:1098 / 1080; }
+.project-other-works .xiaoxue-video-grid figure:nth-child(3) video { aspect-ratio:1920 / 496; }
+.project-other-works .xiaoxue-video-grid figure:nth-child(4) video { aspect-ratio:1920 / 194; }
 .project-other-works .strip-xiaoxue { display:grid; gap:12px; grid-template-columns:repeat(4,minmax(0,1fr)); margin-top:16px; overflow:visible; padding:0; }
 .project-other-works .strip-xiaoxue figure { min-width:0; }
 .project-other-works .strip-xiaoxue img { aspect-ratio:1/1; height:auto; object-fit:cover; width:100%; }
@@ -1752,11 +1767,16 @@ footer .eyebrow { color:#ffc15d; }
 .project-other-works .gallery-layout-crrc img { display:block; height:auto; max-height:none; object-fit:contain; padding:0; width:100%; }
 .project-other-works .strip-crrc { display:grid; gap:12px; grid-template-columns:repeat(3,minmax(0,1fr)); margin-top:16px; overflow:visible; padding:0; }
 .project-other-works .strip-crrc figure { min-width:0; }
-.project-other-works .strip-crrc img { aspect-ratio:9/16; height:auto; max-height:none; object-fit:cover; width:100%; }
+.project-other-works .strip-crrc img { aspect-ratio:auto; height:auto; max-height:none; object-fit:contain; width:100%; }
 .project-other-works .detail-toc a.toc-capability { gap:5px; }
 .project-other-works .detail-toc a.toc-capability strong { font-size:12px; line-height:1.28; }
 .project-other-works .detail-toc a.toc-capability small { font-size:8px; line-height:1.35; }
 @media(max-width:760px){.project-other-works .xiaoxue-video-grid,.project-other-works .strip-xiaoxue,.project-other-works .strip-crrc{grid-template-columns:1fr}.modeling-card-row{grid-template-columns:repeat(2,minmax(0,1fr))}.modeling-lightbox{padding:20px}}
+
+.project-other-works #forum .detail-fact { backdrop-filter:blur(18px) saturate(145%); background:linear-gradient(145deg,rgba(37,83,153,.32),rgba(12,28,58,.44) 58%,rgba(95,145,221,.1)); border:1px solid rgba(111,174,255,.48); border-radius:12px; box-shadow:inset 0 1px 0 rgba(220,237,255,.22),0 14px 34px rgba(4,26,73,.2); }
+.project-other-works #forum .detail-fact::before { background:linear-gradient(90deg,#99c8ff,#3d87e8); box-shadow:0 0 16px rgba(83,153,242,.55); }
+.project-other-works #forum .detail-fact span { color:#accfff; }
+.project-other-works #forum .detail-fact strong { color:#f4f9ff; }
 
 /* Mobile keeps the complete 16:9 hero film in view. The desktop cover fills
    its canvas, while a narrow portrait viewport gives the film its own frame
@@ -1774,6 +1794,27 @@ footer .eyebrow { color:#ffc15d; }
   .hero-bottom { bottom:28px; }
   .hero-lanyard-drop { height:52%; right:-16vw; top:18px; width:60vw; }
 }
+
+/* Bilingual capability labels keep Chinese first at both heading levels. */
+.capabilities-heading { display:flex; flex-direction:column; gap:10px; font-size:clamp(52px,8vw,104px); letter-spacing:-.07em; }
+.capabilities-heading span { font-size:clamp(30px,5.6vw,76px); letter-spacing:-.075em; }
+.capability-copy h3 { align-items:baseline; display:flex; flex-wrap:wrap; gap:8px 14px; text-transform:none; }
+.capability-copy h3 small { color:#ff8b6d; font-size:.65em; font-weight:800; letter-spacing:.04em; }
+
+/* The visible sliders control the same tracks used by scroll and edge hover. */
+.project-marquee-slider { align-items:center; color:#ff6848; display:flex; gap:12px; margin:0 3.2vw 18px; }
+.project-marquee-slider span { flex:none; font-size:15px; line-height:1; }
+.project-marquee-slider input { appearance:none; background:linear-gradient(90deg,rgba(255,95,60,.55),rgba(255,95,60,.18)); border:1px solid rgba(255,122,90,.35); border-radius:999px; cursor:ew-resize; flex:1; height:8px; margin:0; min-width:0; }
+.project-marquee-slider input::-webkit-slider-thumb { appearance:none; background:#ff5a3b; border:2px solid #ffe3d9; border-radius:50%; box-shadow:0 0 0 4px rgba(255,90,59,.18); height:20px; width:20px; }
+.project-marquee-slider input::-moz-range-thumb { background:#ff5a3b; border:2px solid #ffe3d9; border-radius:50%; box-shadow:0 0 0 4px rgba(255,90,59,.18); height:16px; width:16px; }
+.project-marquee-slider input:focus-visible { outline:2px solid #fff1e8; outline-offset:5px; }
+
+/* Music stays reachable while scrolling between sections and project pages. */
+.site-music-toggle { align-items:center; backdrop-filter:blur(16px) saturate(140%); background:rgba(29,13,13,.74); border:1px solid rgba(255,119,85,.75); border-radius:50%; box-shadow:0 8px 28px rgba(0,0,0,.32),inset 0 1px rgba(255,255,255,.12); bottom:28px; color:#fff0e7; cursor:pointer; display:flex; height:42px; justify-content:center; left:3.2vw; position:fixed; transition:background .2s ease,transform .2s ease; width:42px; z-index:100; }
+.site-music-toggle:hover { background:rgba(239,76,44,.9); transform:translateY(-2px); }
+.site-music-toggle.is-playing { border-color:#ffb492; color:#ffcab3; }
+.site-music-toggle svg { height:20px; width:20px; }
+@media(max-width:760px) { .project-marquee-slider { margin-left:18px; margin-right:18px; } .site-music-toggle { bottom:18px; left:18px; } }
 
 /* Covers are artwork, not framed cards. This removes the colored double-line
    treatment consistently from every project detail page. */
