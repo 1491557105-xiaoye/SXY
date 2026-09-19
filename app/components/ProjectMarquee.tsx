@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import BorderGlow from './BorderGlow';
 
 type Row = 'primary' | 'secondary';
@@ -12,13 +13,23 @@ function MarqueeRow({ items, row, trackRef, sliderRef, onPointerMove, onPointerL
   onPointerLeave: (row: Row) => void;
   onSliderChange: (row: Row, event: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
+  const router = useRouter();
+  const handleCardClick = (event: React.MouseEvent, href: string) => {
+    // Middle-click / modifier-click / right-click: let the browser handle it
+    // natively (open in new tab, etc.). Otherwise do a client-side navigation
+    // so the background music keeps playing across the route change.
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    try { sessionStorage.setItem('bgm-continue', '1'); } catch {}
+    router.push(href);
+  };
   return (
     <>
       <div className={`project-marquee-row-shell project-marquee-row-${row}`} onPointerMove={(event) => onPointerMove(row, event)} onPointerLeave={() => onPointerLeave(row)}>
         <div ref={trackRef} className="project-marquee-row" data-marquee-row={row}>
           {items.map((item, index) => (
             <BorderGlow key={item.href} className={`project-marquee-glow project-marquee-card-${index + 1}`} borderRadius={16}>
-              <a className="project-marquee-card" href={item.href}>
+              <a className="project-marquee-card" href={item.href} onClick={(event) => handleCardClick(event, item.href)}>
                 {item.image ? <img src={item.image} alt="" loading="lazy" /> : <div className="project-marquee-placeholder"><span>ASSET<br />TO COME</span></div>}
                 <div className="project-marquee-caption"><span>{item.label}</span><strong>{item.title}</strong><small>{item.titleEn}</small></div>
               </a>
