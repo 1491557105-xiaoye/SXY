@@ -16,10 +16,10 @@ export default defineConfig(() => {
     css: { postcss: { plugins: [tailwindcss()] } },
     server: {
       host: '0.0.0.0',
-      allowedHosts: true,
+      allowedHosts: true as const,
       ...(isCodexSeatbeltSandbox ? { watch: { useFsEvents: false, usePolling: true } } : {}),
     },
-    preview: { host: '0.0.0.0', allowedHosts: true },
+    preview: { host: '0.0.0.0', allowedHosts: true as const },
     // Only the Vite + Next (RSC) core is needed to run as a plain Node server.
     // The OpenAI "sites" and Cloudflare Workers plugins require OpenAI's build
     // environment and are intentionally omitted for standard hosting.
