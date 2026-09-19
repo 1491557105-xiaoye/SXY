@@ -1,0 +1,11 @@
+.line-sidebar { --accent-color:#f01800; --text-color:#e3e3e3; --marker-color:#647078; width:100%; }
+.line-sidebar ul { display:flex; flex-direction:column; gap:0; list-style:none; margin:0; padding:0; }
+.line-sidebar li { align-items:flex-start; cursor:pointer; display:flex; gap:12px; min-height:58px; outline:none; position:relative; }
+.line-sidebar li::before { content:''; inset:-4px -14px; position:absolute; }
+.line-sidebar-marker { background:color-mix(in srgb,var(--accent-color) calc(var(--effect,0) * 100%),var(--marker-color)); display:block; flex:0 0 34px; height:1px; margin-top:10px; transform:scaleX(calc(.55 + var(--effect,0) * .45)); transform-origin:left; }
+.line-sidebar-copy { color:color-mix(in srgb,var(--accent-color) calc(var(--effect,0) * 100%),var(--text-color)); display:grid; gap:3px; min-width:0; transform:translateX(calc(var(--effect,0) * 12px)); }
+.line-sidebar-copy b { color:inherit; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:10px; letter-spacing:.1em; }
+.line-sidebar-copy strong { font-size:12px; letter-spacing:.02em; line-height:1.25; }
+.line-sidebar-copy small { color:#89978f; font-size:8px; letter-spacing:.08em; line-height:1.25; }
+.line-sidebar li:focus-visible .line-sidebar-copy,.line-sidebar li:hover .line-sidebar-copy { color:var(--accent-color); }
+.line-sidebar li.is-active .line-sidebar-copy { color:var(--accent-color); }
