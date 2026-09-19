@@ -3,10 +3,12 @@ import type { Metadata } from 'next';
 import type { CSSProperties } from 'react';
 import Grainient from '../../components/Grainient';
 import Aurora from '../../components/Aurora';
-import Link from 'next/link';
+import WordmarkLink from '../../components/WordmarkLink';
+import NextProjectLink from '../../components/NextProjectLink';
 import UaWeeklyRails from '../../components/UaWeeklyRails';
 import LongformPreviewRail from '../../components/LongformPreviewRail';
 import ModelingGallery from '../../components/ModelingGallery';
+import ProjectDirectory from '../../components/ProjectDirectory';
 
 type ProjectMedia = { src: string; alt: string; caption?: string; variant?: 'feature' | 'wide' | 'tall' | 'compact' | 'transparent'; type?: 'image' | 'video'; poster?: string; mime?: string };
 
@@ -14,6 +16,7 @@ type ProjectSection = {
   id: string;
   label: string;
   title: string;
+  subtitle?: string;
   body: string[];
   media?: ProjectMedia[];
   steps?: string[];
@@ -320,7 +323,7 @@ const projects: Record<string, Project> = {
     meta:['2023—2025','SELECTED ARCHIVE','MULTI-MEDIA'], role:'视觉设计 / 动态设计 / 三维建模 / 工业涂装', hero:'/media/projects/other-works/future-aircraft-cover.webp', heroPosition:'center', accent:'#846bff',
     sections:[
       {
-        id:'aircraft', label:'01 / OFFICIAL KEY VISUAL', title:'把“智驭空天”组织成一套可公开传播的赛事主视觉。',
+        id:'aircraft', label:'02 / OFFICIAL KEY VISUAL', title:'国家级赛事-第十一届中国研究生未来飞行器创新大赛丨主视觉设计', subtitle:'把“智驭空天”组织成一套可公开传播的赛事主视觉。',
         body:['面向第十一届中国研究生未来飞行器创新大赛，研究生院采用我的主视觉方向；我负责核心视觉定性与后续物料延展。','以 Midjourney、即梦完成前期意象探索，再使用 Photoshop 与 Illustrator 完成色彩、主题字、航迹图形和信息系统。方案获官方采用并公开发布。'],
         facts:[{label:'TIME',value:'2025.11'},{label:'ROLE',value:'主视觉设计'},{label:'STATUS',value:'官方采用 · 公开发布'}],
         media:[
@@ -330,7 +333,7 @@ const projects: Record<string, Project> = {
         ], layout:'archive'
       },
       {
-        id:'xiaoxue', label:'03 / DIGITAL ANIMATION', title:'中国电影博物馆环形巨幕“二十四节气 · 小雪”。',
+        id:'xiaoxue', label:'03 / DIGITAL ANIMATION', title:'中国国家电影博物馆·小雪丨数字动画设计', subtitle:'中国电影博物馆环形巨幕“二十四节气 · 小雪”。',
         body:['四人团队中，其他三名成员负责平面视觉，我负责将平面方案转化为 After Effects 动画，完成环形巨幕及多屏动效适配，并输出立屏平面效果。项目最终完成五种屏幕规格并在中国电影博物馆实际播放。','页面按“文化提取 → 动态语言 → 环幕适配 → 五种规格 → 现场播放”组织，并补入现场记录与立屏、地屏、环屏、卷轴屏的动效成片。'],
         facts:[{label:'TIME',value:'2024.10—12'},{label:'DELIVERY',value:'5 种屏幕规格'},{label:'MEDIA STATUS',value:'现场视频与动效已补'}],
         media:[
@@ -347,7 +350,7 @@ const projects: Record<string, Project> = {
         ], layout:'xiaoxue'
       },
       {
-        id:'modeling', label:'04 / 3D MODELING', title:'IP 设计 · 三维建模练习。',
+        id:'modeling', label:'04 / 3D MODELING', title:'IP形象设计练习丨三维', subtitle:'IP 设计 · 三维建模练习。',
         body:['三维部分精选本科阶段独立完成的建模与渲染练习，展示从造型语言、结构塑造到材质和场景氛围的完整视觉表达。当前素材以龙马 IP“绝尘”为主案例，并保留后续增加 3—5 件作品的扩展位置。','“绝尘”以河南龙马神兽为原型，将传统图形、祥云和现代 IP 比例结合，形成明亮、轻盈且具有祝愿意味的角色形象。'],
         media:[
           {src:'/media/projects/other-works/modeling-cover-main.webp',alt:'三维建模练习合集',caption:'3D Modeling · 练习合集',variant:'feature'},
@@ -359,7 +362,7 @@ const projects: Record<string, Project> = {
         ], layout:'modeling'
       },
       {
-        id:'crrc', label:'05 / INDUSTRIAL LIVERY', title:'让二维图形跨越真实工业结构。',
+        id:'crrc', label:'05 / INDUSTRIAL LIVERY', title:'轨道交通机车涂装设计丨视觉设计', subtitle:'让二维图形跨越真实工业结构。',
         body:['系列项目覆盖 QBAA1 型纯电动力机车、SRT QSGJC-120 轨检车和 CTG 设备。我负责涂装主视觉与平面效果图、三维效果预览，并根据车体结构、开孔、门窗与生产反馈持续调整图形落位。','三款方案均进入实际生产。以下把设计说明、色彩、二维图形、三维视图与落地证据组织为适合网页浏览的连续档案。'],
         facts:[{label:'PERIOD',value:'2024.01—2025.12'},{label:'CARRIER',value:'3 类轨道交通载体'},{label:'STATUS',value:'均已生产应用'}],
         media:[
@@ -442,7 +445,7 @@ const projects: Record<string, Project> = {
         ], layout:'archive'
       },
       {
-        id:'patents', label:'05.4 / PATENTS & PUBLIC PROOF', title:'用公开证明收束项目，而不是放大职责。',
+        id:'patents', label:'05.4 / PATENTS & PUBLIC PROOF', title:'证明材料',
         body:['QBAA1 对应“智能电动轨道机车”外观设计专利，本人为第二设计人；相关结构实用新型专利属于多人团队成果，本人为第二发明人，但不以此暗示本人负责工程结构设计。QSGJC-120 与 QBAA1 的宣传册页面用于证明公开应用。','四份证明材料采用横向浏览，保持证书与页面完整比例，悬停时仅轻微放大。'],
         media:[
           {src:'/media/projects/other-works/proof-qsgjc.webp',alt:'轨道交通工程装备宣传册中的QSGJC-120轨检车',caption:'公开应用证明 · QSGJC-120'},
@@ -452,7 +455,7 @@ const projects: Record<string, Project> = {
         ], strip:{start:0,end:4}
       },
       {
-        id:'forum', label:'02 / VISUAL SYSTEM', title:'AI+ · 设计未来学术论坛：让一套视觉系统覆盖整场活动。',
+        id:'forum', label:'01 / VISUAL SYSTEM', title:'AI+设计未来学术论坛丨主视觉设计', subtitle:'让一套视觉系统覆盖整场活动。',
         body:['围绕“AI × 设计未来”进行行业资料与竞品分析，并与主办方及项目成员确认活动定位、传播需求和应用场景。我负责主视觉方向，并将其延展至会议手册、宣传物料、导视与线下空间。','本节不重复讲解主视觉生成过程，而是重点展示同一套图形语言如何适配舞台大屏、桌面物料与现场导视，支持 400+ 线下参与者的完整活动体验。'],
         facts:[{label:'TIME',value:'2025.11—12'},{label:'ROLE',value:'主视觉设计'},{label:'SCALE',value:'400+ 线下参与者'}],
         media:[
@@ -543,18 +546,18 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     : new Set<string>();
   const visibleSections = project.sections.filter((section) => !hiddenSectionIds.has(section.id));
   if (slug === 'other-works') {
-    const order = ['aircraft','forum','xiaoxue','modeling','crrc','patents'];
+    const order = ['forum','aircraft','xiaoxue','modeling','crrc','patents'];
     visibleSections.sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
   }
   const tocSections = slug === 'other-works'
     ? visibleSections.filter((section) => ['aircraft','forum','xiaoxue','modeling','crrc'].includes(section.id))
     : visibleSections;
-  const otherWorksToc: Record<string, { capability: string; project: string }> = {
-    aircraft: { capability: '主视觉设计', project: '智驭空天' },
-    forum: { capability: '主视觉设计', project: 'AI+ 设计未来论坛' },
-    xiaoxue: { capability: '数字动效设计', project: '小雪多屏动画' },
-    modeling: { capability: '三维建模设计', project: 'IP 建模作品' },
-    crrc: { capability: '平面图形设计', project: '轨道涂装设计' },
+  const otherWorksToc: Record<string, { title: string; subtitle: string }> = {
+    forum: { title: 'AI+设计未来学术论坛', subtitle: '主视觉设计' },
+    aircraft: { title: '国家级赛事-第十一届中国研究生未来飞行器创新大赛', subtitle: '主视觉设计' },
+    xiaoxue: { title: '中国国家电影博物馆·小雪', subtitle: '数字动画设计' },
+    modeling: { title: 'IP形象设计练习', subtitle: '三维' },
+    crrc: { title: '轨道交通机车涂装设计', subtitle: '视觉设计' },
   };
 
   return (
@@ -562,9 +565,10 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       {slug === 'netease-once-human' && <Grainient className="netease-grainient" color1="#102d62" color2="#4c1f54" color3="#03050b" timeSpeed={0.16} warpStrength={0.62} warpFrequency={3.4} warpSpeed={0.55} grainAmount={0.075} grainScale={1.6} contrast={1.4} saturation={0.9} zoom={1.05} />}
       {slug === 'li-auto' && <Aurora className="li-auto-aurora" colorStops={['#2e8079', '#004b48', '#003232']} blend={0.46} amplitude={1} speed={0.9} />}
       {slug === 'other-works' && <Aurora className="other-works-aurora" colorStops={['#430000', '#460d00', '#000000']} blend={0.62} amplitude={1} speed={0.9} />}
+      {slug === 'art-village' && <Aurora className="art-village-aurora" colorStops={['#10B981', '#006678', '#000000']} blend={0.62} amplitude={1} speed={0.9} />}
       <header className="detail-header">
-        <Link href="/#home" scroll className="wordmark">SHAO XINYE <span>PORTFOLIO · 2026</span></Link>
-        <Link href="/#work" scroll>ALL PROJECTS ×</Link>
+        <WordmarkLink className="wordmark">SHAO XINYE <span>PORTFOLIO · 2026</span></WordmarkLink>
+        <ProjectDirectory />
       </header>
 
       <section className="project-hero-detail">
@@ -583,12 +587,12 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       <div className="detail-layout">
         <aside className="detail-toc"><span>CONTENTS / 目录</span>{tocSections.map((section, index) => {
           const tocItem = slug === 'other-works' ? otherWorksToc[section.id] : undefined;
-          return <a href={`#${section.id}`} key={section.id} className={tocItem ? 'toc-capability' : undefined}><strong>{String(index + 1).padStart(2,'0')} / {tocItem?.capability || tocTranslations[section.id] || section.title}</strong><small>{tocItem?.project || section.label.replace(/^\d+\s*\/\s*/, '')}</small></a>;
+          return <a href={`#${section.id}`} key={section.id} className={tocItem ? 'toc-capability' : undefined}><strong>{String(index + 1).padStart(2,'0')} / {tocItem?.title || tocTranslations[section.id] || section.title}</strong><small>{tocItem?.subtitle || section.label.replace(/^\d+\s*\/\s*/, '')}</small></a>;
         })}</aside>
         <article id="summary" className="detail-sections">
           {visibleSections.map((section)=>(
             <section id={section.id} className="detail-section" key={section.id}>
-              <span className="detail-label">{section.label}</span><h2>{section.title}</h2>
+              <span className="detail-label">{section.label}</span><h2>{section.title}</h2>{section.subtitle && <p className="detail-section-subtitle">{section.subtitle}</p>}
               <div className="detail-body">{section.body.map((paragraph)=><p key={paragraph}>{paragraph}</p>)}</div>
               {section.steps && <ol className="process-list">{section.steps.map((step,index)=><li key={step}><span>{String(index+1).padStart(2,'0')}</span>{step}</li>)}</ol>}
               {section.facts && <div className="detail-facts">{section.facts.map((fact)=><div className="detail-fact" key={fact.label} style={fact.color ? { '--fact-color': fact.color } as CSSProperties : undefined}><span>{fact.label}</span><strong>{fact.value}</strong></div>)}</div>}
@@ -598,9 +602,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         </article>
       </div>
 
-      <Link className="next-project" href={`/projects/${nextSlug}`}>
+      <NextProjectLink className="next-project" href={`/projects/${nextSlug}`}>
         <span>NEXT PROJECT · {next.order}</span><strong>{next.title}</strong><i>↗</i>
-      </Link>
+      </NextProjectLink>
     </main>
   );
 }
