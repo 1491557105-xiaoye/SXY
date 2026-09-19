@@ -1,7 +1,9 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
+import { headers } from 'next/headers';
 import { Geist, Geist_Mono, Instrument_Serif } from 'next/font/google';
 import './globals.css';
 import AppWrapper from './components/AppWrapper';
+import VisitBeacon from './components/VisitBeacon';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -38,6 +40,20 @@ export const metadata: Metadata = {
   },
 };
 
+export async function generateViewport(): Promise<Viewport> {
+  const headersList = await headers();
+  const ua = (headersList.get('user-agent') ?? '').toLowerCase();
+  // On phones, render the page at a fixed desktop width (1440px) and let the
+  // browser scale it down to fit the screen. This keeps the exact desktop
+  // layout without reflowing / overlapping elements.
+  const isMobile = /mobile|android|iphone|ipod|webos|blackberry|opera mini/i.test(ua);
+  return {
+    width: isMobile ? '1440' : 'device-width',
+    initialScale: 1,
+    userScalable: true,
+  };
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -49,6 +65,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} antialiased`}
       >
         <AppWrapper>{children}</AppWrapper>
+        <VisitBeacon />
       </body>
     </html>
   );
