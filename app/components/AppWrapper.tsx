@@ -13,7 +13,9 @@ export default function AppWrapper({ children }: { children: React.ReactNode }) 
   useEffect(() => {
     if (!firstMountRef.current) return;
     firstMountRef.current = false;
-    if (pathname !== '/') {
+    const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming | undefined;
+    const isHardRefresh = navigation?.type === 'reload';
+    if (pathname !== '/' && isHardRefresh) {
       window.location.replace('/#home');
       return;
     }

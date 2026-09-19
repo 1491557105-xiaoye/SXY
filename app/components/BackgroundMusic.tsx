@@ -14,7 +14,11 @@ export default function BackgroundMusic() {
     if (!audio) return;
     audio.volume = 0.38;
 
-    const tryPlay = () => { if (!manuallyPausedForThisPage) void audio.play().catch(() => setPlaying(false)); };
+    const tryPlay = () => {
+      if (manuallyPausedForThisPage) return;
+      audio.load();
+      void audio.play().catch(() => setPlaying(false));
+    };
     tryPlay();
 
     // Browsers often require a visitor gesture before audio can start.
@@ -43,7 +47,7 @@ export default function BackgroundMusic() {
   };
 
   return <>
-    <audio ref={audioRef} loop preload="auto" onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}>
+    <audio ref={audioRef} autoPlay loop playsInline preload="auto" onCanPlay={() => { const audio = audioRef.current; if (audio && !manuallyPausedForThisPage) void audio.play().catch(() => setPlaying(false)); }} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}>
       <source src="/media/audio/portfolio-music.mp3" type="audio/mpeg" />
     </audio>
     <button className={`site-music-toggle${playing ? ' is-playing' : ''}`} type="button" onClick={toggle} aria-label={playing ? '关闭背景音乐' : '播放背景音乐'} aria-pressed={playing} title={playing ? '关闭背景音乐' : '播放背景音乐'}>
