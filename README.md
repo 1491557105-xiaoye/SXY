@@ -6,6 +6,8 @@
 
 [**在线访问作品集 ↗**](https://sxy-portfolio-2026-ochre.vercel.app/) · [查看在线简历](https://sxy-portfolio-2026-ochre.vercel.app/resume-shao-xinye-2027.pdf) · [联系我](mailto:1491557105@qq.com)
 
+**[下载完整作品集 PDF（百度网盘）↗](https://pan.baidu.com/s/11NGZ7LFp3BLUxOOWS19Wag?pwd=pnvv)**　提取码：`pnvv`
+
 [![邵歆晔作品集首页](./public/readme/portfolio-home.png)](https://sxy-portfolio-2026-ochre.vercel.app/)
 
 ## 关于这个作品集
