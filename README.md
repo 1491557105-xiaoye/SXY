@@ -1,14 +1,10 @@
-<div align="center">
-
 # SHAO XINYE · PORTFOLIO 2026
 
 **AI 产品 · 内容运营 · 用户体验 · 视觉系统**
 
 以设计思维连接用户、内容与业务，将复杂信息转化为清晰、可执行、可交付的体验。
 
-[**在线访问作品集 ↗**](https://sxy-portfolio-2026-ochre.vercel.app/)　·　[查看在线简历](https://sxy-portfolio-2026-ochre.vercel.app/resume-shao-xinye-2027.pdf)　·　[联系我](mailto:1491557105@qq.com)
-
-</div>
+[**在线访问作品集 ↗**](https://sxy-portfolio-2026-ochre.vercel.app/) · [查看在线简历](https://sxy-portfolio-2026-ochre.vercel.app/resume-shao-xinye-2027.pdf) · [联系我](mailto:1491557105@qq.com)
 
 [![邵歆晔作品集首页](./public/readme/portfolio-home.png)](https://sxy-portfolio-2026-ochre.vercel.app/)
 
@@ -28,24 +24,11 @@
 | [天网寻踪｜无人机搜寻系统](https://sxy-portfolio-2026-ochre.vercel.app/projects/skynet-search) | 产品体验、服务流程、软硬件系统 |
 | [Other Works｜跨媒介作品](https://sxy-portfolio-2026-ochre.vercel.app/projects/other-works) | 主视觉、数字动画、三维、工业涂装 |
 
-<table>
-  <tr>
-    <td width="50%"><a href="https://sxy-portfolio-2026-ochre.vercel.app/projects/netease-once-human"><img src="./public/media/netease-overview-hero.webp" alt="网易游戏七日世界项目" /></a></td>
-    <td width="50%"><a href="https://sxy-portfolio-2026-ochre.vercel.app/projects/li-auto"><img src="./public/media/projects/li-auto/hero.webp" alt="理想汽车算力平台项目" /></a></td>
-  </tr>
-  <tr>
-    <td align="center"><strong>网易游戏｜《七日世界》</strong></td>
-    <td align="center"><strong>理想汽车｜算力平台</strong></td>
-  </tr>
-  <tr>
-    <td width="50%"><a href="https://sxy-portfolio-2026-ochre.vercel.app/projects/art-village"><img src="./public/media/projects/art-village/cover-main.webp" alt="艺术村长乡村振兴项目" /></a></td>
-    <td width="50%"><a href="https://sxy-portfolio-2026-ochre.vercel.app/projects/skynet-search"><img src="./public/media/skynet-hero.webp" alt="天网寻踪无人机搜寻系统项目" /></a></td>
-  </tr>
-  <tr>
-    <td align="center"><strong>艺术村长｜乡村振兴</strong></td>
-    <td align="center"><strong>天网寻踪｜无人机搜寻系统</strong></td>
-  </tr>
-</table>
+| 网易游戏｜《七日世界》 | 理想汽车｜算力平台 |
+| --- | --- |
+| [![网易游戏七日世界项目](./public/media/netease-overview-hero.webp)](https://sxy-portfolio-2026-ochre.vercel.app/projects/netease-once-human) | [![理想汽车算力平台项目](./public/media/projects/li-auto/cover.webp)](https://sxy-portfolio-2026-ochre.vercel.app/projects/li-auto) |
+| 艺术村长｜乡村振兴 | 天网寻踪｜无人机搜寻系统 |
+| [![艺术村长乡村振兴项目](./public/media/projects/art-village/cover-main.webp)](https://sxy-portfolio-2026-ochre.vercel.app/projects/art-village) | [![天网寻踪无人机搜寻系统项目](./public/media/projects/skynet/cover-main.webp)](https://sxy-portfolio-2026-ochre.vercel.app/projects/skynet-search) |
 
 ## 核心能力
 
@@ -93,8 +76,4 @@ pnpm exec next build
 
 ---
 
-<div align="center">
-
 © 2026 Shao Xinye. Portfolio content and visual assets are presented for personal recruitment and academic communication.
-
-</div>
